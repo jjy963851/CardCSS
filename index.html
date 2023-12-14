@@ -1,0 +1,85 @@
+<div class="layout">
+    <div>
+        <h2 class="text-style">Hover your mouse and check what happens!</h2>
+        <p>- JaeYong Chang - </p>
+    </div>
+    <div class="container">
+        <div class="overlay"></div>
+        <div class="card"></div>
+
+    </div>
+</div>
+<script>
+    var container = document.querySelector('.container')
+    var overlay = document.querySelector('.overlay')
+    container.addEventListener('mousemove', function (e) {
+        var x = e.offsetX
+        var y = e.offsetY
+        var rotateX = 1 / 10 * y - 20
+        var rotateY = -5 / 70 * x + 20
+
+        overlay.style = `background-position : ${x / 9 + y / 30}`
+
+        container.style = `transform : perspective(520px)
+         rotateX(${rotateX}deg) 
+        rotateY(${rotateY}deg)`
+    })
+
+    container.addEventListener('mouseout', function () {
+        overlay.style = 'filter : opacity(0)'
+        container.style = 'transform : perspective(520px) rotateY(0deg) rotateX(0deg)'
+    })
+</script>
+
+
+<style>
+    .layout {
+        padding-top: 10rem;
+        gap: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .container {
+        width: 520px;
+        height: 302px;
+
+
+    }
+
+    .text-style {
+        font-weight: 700;
+    }
+
+    .card {
+        width: 520px;
+        height: 302px;
+        background-image: url(cardPicture.png);
+        background-size: cover;
+    }
+
+    .overlay {
+        position: absolute;
+        width: 520px;
+        height: 302px;
+        background: linear-gradient(105deg,
+                transparent 40%,
+                rgba(255, 219, 112, 0.9) 45%,
+                rgba(132, 50, 255, 0.3) 60%,
+                rgba(211, 211, 211, 1) 10%,
+                transparent 54%);
+
+        filter: brightness(1) opacity(0.5);
+        mix-blend-mode: color-dodge;
+        background-size: 100% 110%;
+        background-position: 100%;
+        transition: all 0.1s;
+
+        border-radius: 15px;
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0),
+  2px 2px 5px rgba(94, 104, 121, 0.5);
+    }
+</style>
